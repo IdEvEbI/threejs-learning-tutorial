@@ -27,13 +27,45 @@ const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
 // 2. 创建一个平面（宽 10，高 10）
 const planeGeometry = new THREE.PlaneGeometry(10, 10);
 
-// 3. 为球体和平面分别创建 MeshBasicMaterial 材质（后续将替换为更高级材质）
-const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffcc });
-const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+// 3. 为球体和平面分别创建材质
+/**
+ * 1. MeshBasicMaterial：基础材质，不受光照影响，适用于不需要光照的场景。
+ * 2. MeshLambertMaterial：支持光照计算的漫反射材质，适用于较柔和的光影效果。
+ * 3. MeshPhongMaterial：支持高光反射的材质，可呈现较亮的高光点。
+ * 4. MeshStandardMaterial：基于 PBR(Physically Based Rendering) 原理的材质，视觉真实，支持粗糙度、金属度等参数。
+ * 5. MeshBasicMaterial：基础材质，不受光照影响，适用于不需要光照的场景。
+ * 6. MeshPhysicalMaterial：PBR 材质的升级版，提供更高级的特性（如折射、透明度高级控制、清晰度等）。
+ */
+const sphereMaterial = new THREE.MeshLambertMaterial({ color: 0x00ffcc });
+const planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
 
 // 4. 创建球体 Mesh 与平面 Mesh
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+// // 使用 TextureLoader 加载纹理
+const textureLoader = new THREE.TextureLoader();
+const floorTexture = textureLoader.load("./images/textures/wood.jpg");
+
+// 使用 MeshStandardMaterial 并赋予 map 属性
+const texturedFloorMaterial = new THREE.MeshStandardMaterial({
+  map: floorTexture,
+});
+
+// 将地面的材质替换为带纹理的材质
+// plane.material = texturedFloorMaterial;
+
+// 加载法线贴图
+const normalMap = textureLoader.load("./images/textures/normalMap.png");
+
+// 使用 MeshStandardMaterial 支持法线贴图的特性
+const normalMapMaterial = new THREE.MeshStandardMaterial({
+  map: floorTexture,
+  normalMap: normalMap,
+});
+
+// 将地面的材质替换为带有法线贴图的材质
+plane.material = normalMapMaterial;
 
 // 5. 调整平面位置，使其作为地面（绕X轴旋转90°，让平面水平放置）
 plane.rotation.x = -Math.PI / 2;
