@@ -74,6 +74,17 @@ plane.rotation.x = -Math.PI / 2;
 scene.add(sphere);
 scene.add(plane);
 
+// 7. 添加金属球体
+const metalSphereMaterial = new THREE.MeshStandardMaterial({
+  color: 0xcccccc,
+  metalness: 1.0,
+  roughness: 0.2,
+});
+
+const metalSphere = new THREE.Mesh(sphereGeometry, metalSphereMaterial);
+scene.add(metalSphere);
+metalSphere.position.x = 3; // 将金属球体移到右侧以对比不同材质
+
 // 添加环境光
 const ambientLight = new THREE.AmbientLight(0x404040, 1); // 软白光
 scene.add(ambientLight);
