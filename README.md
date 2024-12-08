@@ -60,12 +60,12 @@ threejs-learning-tutorial/
 ├─ README.md                  # 本教程的总览与说明（本文件）
 ├─ docs/                      # 教程文档：概念解析、步骤说明、参考资料
 │   ├─ introduction.md        # 学习目标与路径详情
-│   ├─ webgl-basics.md        # WebGL与3D概念基础
-│   ├─ threejs-intro.md       # Three.js入门教程
+│   ├─ webgl-basics.md        # WebGL 与 3D 概念基础
+│   ├─ threejs-intro.md       # Three.js 入门教程
 │   ├─ object-material.md     # 几何体、材质与光源
-│   ├─ cube-3x3x3.md          # 构建3x3x3魔方的详细步骤
+│   ├─ cube-3x3x3.md          # 构建 3x3x3 魔方的详细步骤
 │   ├─ rotation-animation.md  # 实现魔方层旋转与动画
-│   ├─ ui-interaction.md      # UI与交互逻辑优化
+│   ├─ ui-interaction.md      # UI 与交互逻辑优化
 │   ├─ advanced-topics.md     # 可选高级扩展主题
 │   └─ references.md          # 参考资料与有用链接
 │
